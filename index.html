@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-Hans">
 <head>
     <meta charset="UTF-8">
@@ -344,40 +344,117 @@
         }
 
         /* News/Notice Section */
-        .news-card-wrapper {
-            max-width: 980px;
-            margin: 0 auto 80px auto; /* Add margin-bottom */
+        .news-section {
+            padding: 80px 0; /* Adjust padding if needed */
+        }
+
+        .news-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid for news cards */
+            gap: 30px;
+            max-width: 1200px; /* Ensure it's wide enough for multiple columns */
+            margin: 40px auto 0 auto;
+        }
+
+        .news-card-item {
             background: #fff;
             border-radius: 14px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-            padding: 36px 42px 44px;
+            padding: 25px 30px 30px;
             border-left: 6px solid #F39C12; /* Accent color for news */
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
+            position: relative;
+            overflow: hidden; /* For potential image or decorative elements */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .news-card-wrapper h3 {
-            font-size: 24px;
+        .news-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .news-card-item h3 {
+            font-size: 19px; /* Slightly smaller for multi-card view */
             color: #204E96;
             margin-bottom: 5px;
             display: flex;
             align-items: center;
             gap: 10px;
+            line-height: 1.4;
+            min-height: 50px; /* Ensure consistent height for titles */
         }
 
-        .news-card-wrapper .news-date {
-            font-size: 14px;
+        .news-card-item .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
             color: #888;
-            align-self: flex-end; /* Align date to the right */
+            margin-top: auto; /* Push to bottom */
+            padding-top: 10px;
+            border-top: 1px solid #f0f0f0;
         }
 
-        .news-card-wrapper p {
-            font-size: 16px;
-            line-height: 1.7;
-            color: #555;
+        .news-card-item .news-meta a {
+            color: #009DD0;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-        
+        .news-card-item .news-meta a:hover {
+            text-decoration: underline;
+        }
+
+        /* Committee Section Styles */
+        .committee-section {
+            padding: 0 0 80px 0; /* Align with other sections */
+        }
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Two columns for committees */
+            gap: 30px;
+            max-width: 1000px; /* Slightly narrower for committee lists */
+            margin: 40px auto 0 auto;
+        }
+        .committee-card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            padding: 30px;
+            border-top: 6px solid #009DD0; /* Primary accent for committees */
+            display: flex;
+            flex-direction: column;
+        }
+        .committee-card h3 {
+            font-size: 24px;
+            color: #204E96;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .committee-card .member-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap; /* Allow names to wrap */
+            gap: 10px 20px; /* Row and column gap */
+            justify-content: center; /* Center names */
+        }
+        .committee-card .member-list li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            white-space: nowrap; /* Prevent names from breaking within a name */
+        }
+        .committee-card .member-list li strong {
+            font-weight: 600;
+            color: #009DD0;
+        }
+
         /* Souvenirs Section */
         .souvenirs-gallery {
             display: flex;
@@ -472,10 +549,22 @@
             .souvenir-item img {
                 height: 300px;
             }
-            .news-card-wrapper {
-                padding: 25px 30px 30px;
+            .news-card-item { /* Adjust padding for small screens */
+                padding: 20px;
+            }
+            .news-list {
+                grid-template-columns: 1fr; /* Single column on small screens */
+            }
+            .committee-grid {
+                grid-template-columns: 1fr; /* Single column for committees on small screens */
             }
         }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .news-list {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Two columns on medium screens */
+            }
+        }
+
 
         /* Welcome section background */
         .welcome-section {
@@ -551,7 +640,7 @@
                     <div class="card">
                         <span class="icon-text">议题</span>
                         <h3>核心议题</h3>
-                        <p>温室气体监测技术交流与合作</p>
+                        <p>加强温室气体监测技术交流与合作</p>
                     </div>
                     <div class="card">
                         <span class="icon-text">报名</span>
@@ -628,20 +717,132 @@
     </section>
 
     <!-- News/Notice Section -->
-    <section class="page-section" style="padding-top: 0;">
+    <section class="page-section news-section" style="padding-top: 0;">
         <div class="container-wide">
             <h2 class="section-title">最新通知与新闻</h2>
-            <div class="news-card-wrapper">
-                <h3><i class="fa fa-bullhorn icon"></i> 关于发布第五届中国温室气体监测研讨会三号通知的通知</h3>
-                <p class="news-date">发布日期: 2025年10月1日</p>
-                <p>
-                    各位专家学者、参会代表：<br>
-                    鉴于会议筹备进展和广大学者的积极响应，经大会组委会研究决定，现发布第五届中国温室气体监测研讨会三号通知。本通知详细介绍了会议的最新日程安排、特邀报告人更新，以及注册费缴费指南等重要信息。请所有拟参会人员及时查阅并按照通知要求进行相关准备。期待与您在武汉相聚，共同探讨温室气体监测的前沿与未来！
-                </p>
-                <div class="welcome-actions" style="margin-top: 15px;">
-                    <a href="details.html" class="btn-primary" style="background-color: #F39C12;">
-                        查看三号通知详情 <i class="fa fa-external-link"></i>
-                    </a>
+            <div class="news-list">
+                <!-- 会议三号通知 -->
+                <div class="news-card-item">
+                    <h3><i class="fa fa-bullhorn icon"></i> 关于发布第五届中国温室气体监测研讨会三号通知的通知</h3>
+                    <div class="news-meta">
+                        <span>发布日期: 2025年10月1日</span>
+                        <a href="details.html" target="_blank">查看详情 <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+
+                <!-- 会议二号通知 -->
+                <div class="news-card-item">
+                    <h3><i class="fa fa-bullhorn icon"></i> 关于发布第五届中国温室气体监测研讨会二号通知的通知</h3>
+                    <div class="news-meta">
+                        <span>发布日期: 2025年8月28日</span>
+                        <a href="https://mp.weixin.qq.com/s/-IrXlOvTgx17upkBNTrz6w" target="_blank">查看详情 <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+
+                <!-- 会议一号通知 -->
+                <div class="news-card-item">
+                    <h3><i class="fa fa-bullhorn icon"></i> 关于发布第五届中国温室气体监测研讨会一号通知的通知</h3>
+                    <div class="news-meta">
+                        <span>发布日期: 2025年6月4日</span>
+                        <a href="https://mp.weixin.qq.com/s/SJ6IaRm5LXvwY5xsKD5Qjw" target="_blank">查看详情 <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+
+                <!-- 外部新闻 1: 碳达峰碳中和标准计量体系建设 -->
+                <div class="news-card-item">
+                    <h3><i class="fa fa-newspaper-o icon"></i> 我国明确“双碳”标准计量体系建设路线图</h3>
+                    <div class="news-meta">
+                        <span>发布日期: 2024年8月8日</span>
+                        <a href="https://www.ndrc.gov.cn/xxgk/zcfb/tz/202408/t20240808_1392291.html" target="_blank">阅读原文 <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+                
+                <!-- 外部新闻 2: 碳排放双控制度体系 -->
+                <div class="news-card-item">
+                    <h3><i class="fa fa-newspaper-o icon"></i> 国办印发《加快构建碳排放双控制度体系工作方案》</h3>
+                    <div class="news-meta">
+                        <span>发布日期: 2024年8月2日</span>
+                        <a href="https://news.cctv.com/2024/08/02/ARTIjLbgSDtJslCDSjg61inn240802.shtml" target="_blank">阅读原文 <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+
+                <!-- 外部新闻 3: 碳监测卫星 -->
+                <div class="news-card-item">
+                    <h3><i class="fa fa-newspaper-o icon"></i> 卫星见证生态之变，空间技术应用有力服务美丽中国建设</h3>
+                    <div class="news-meta">
+                        <span>发布日期: 2025年8月15日</span>
+                        <a href="https://www.stdaily.com/web/gdxw/2025-08/15/content_385923.html" target="_blank">阅读原文 <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+
+                <!-- 外部新闻 4: 中国NDC目标 -->
+                <div class="news-card-item">
+                    <h3><i class="fa fa-newspaper-o icon"></i> 中国将于COP30前宣布2035年国家自主贡献目标</h3>
+                    <div class="news-meta">
+                        <span>发布日期: 2025年4月26日</span>
+                        <a href="https://news.qq.com/rain/a/20250426A02U4N00" target="_blank">阅读原文 <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Committee Section -->
+    <section class="page-section committee-section">
+        <div class="container-wide">
+            <h2 class="section-title">组织机构</h2>
+            <p class="section-subtitle">
+                本次研讨会的成功举办离不开各领域专家学者的鼎力支持与辛勤付出。
+            </p>
+            <div class="committee-grid">
+                <!-- 科学指导委员会 -->
+                <div class="committee-card">
+                    <h3>科学指导委员会</h3>
+                    <ul class="member-list">
+                        <li>曹军骥</li>
+                        <li>陈镜明</li>
+                        <li>陈立奇</li>
+                        <li>丁爱军</li>
+                        <li>葛全胜</li>
+                        <li>顾行发</li>
+                        <li>贺克斌</li>
+                        <li>胡建信</li>
+                        <li>李健军</li>
+                        <li>刘文清</li>
+                        <li>刘毅</li>
+                        <li>卢乃锰</li>
+                        <li>吕达仁</li>
+                        <li>石广玉</li>
+                        <li>苏杭</li>
+                        <li>谈哲敏</li>
+                        <li>王会军</li>
+                        <li>王茂华</li>
+                        <li>徐冠华</li>
+                        <li>徐华清</li>
+                        <li>于贵瑞</li>
+                        <li>张人禾</li>
+                        <li>周卫健</li>
+                    </ul>
+                </div>
+
+                <!-- 组委会 -->
+                <div class="committee-card">
+                    <h3>组委会</h3>
+                    <ul class="member-list">
+                        <li>王绍强 (中国地质大学（武汉）地理与信息工程学院)</li>
+                        <li>王伦澈 (中国地质大学（武汉）地理与信息工程学院)</li>
+                        <li>陶明辉 (中国地质大学（武汉）地理与信息工程学院)</li>
+                        <li>曾宁 (中国科学院大气物理研究所)</li>
+                        <li>韩鹏飞 (中国科学院大气物理研究所)</li>
+                        <li>姚波 (复旦大学大气与海洋科学系)</li>
+                        <li>陈辉林 (南京大学大气科学学院)</li>
+                        <li>刘诚 (中国科技大学精密机械与精密仪器系)</li>
+                        <li>吕洪刚 (国家海洋环境预报中心)</li>
+                        <li>牛振川 (中国科学院地球环境研究所)</li>
+                        <li>丁俊男 (中国环境监测总站)</li>
+                        <li>詹力扬 (自然资源部第三海洋研究所)</li>
+                    </ul>
                 </div>
             </div>
         </div>
